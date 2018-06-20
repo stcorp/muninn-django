@@ -443,7 +443,7 @@ All other fields are writable.
 Geometry
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Geometry data types are not supported; this notably affects ``core.footprint``.
+Geometry data types are not fully supported. The API supports reading and writing, but not query filtering. This notably affects ``core.footprint``.
 
 
 ---------------
