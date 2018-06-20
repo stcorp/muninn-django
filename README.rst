@@ -2,7 +2,7 @@
 Muninn-Django
 =============
 
-A Django app to add a REST API on top of your Muninn archives(s)
+A Django app to add a REST API on top of your Muninn archive(s)
 
 
 ------------
@@ -84,7 +84,7 @@ Installation
 Usage
 ----------------------
 
-The following examples use `httpie`, which can be installed via pip.
+The following examples use ``httpie``, which can be installed via pip.
 
 Query
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -113,7 +113,7 @@ Query
 Sort order
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The default ordering of results is by ascending validity_start.
-The sort order can be customized, using the `ordering` query parameter.
+The sort order can be customized, using the ``ordering`` query parameter.
 Custom ordering needs to be enabled, see optional configuration section below.
 
 - sort by descending metadata_date::
@@ -212,9 +212,9 @@ The default configuration::
 
     url(r'^muninn/', include('muninn_django.urls')),
 
-adds all archives under a common URL path `muninn`, so the URLs for each archive will be `muninn/archive1/`, `muninn/archive2/`, etc.
+adds all archives under a common URL path ``muninn``, so the URLs for each archive will be ``muninn/archive1/``, ``muninn/archive2/``, etc.
 
-To customize, this behaviour, create a `<archive>/urls.py`::
+To customize, this behaviour, create a ``<archive>/urls.py``::
 
     from django.conf.urls import url, include
     from muninn_django.routers import MuninnRouter
@@ -229,8 +229,8 @@ and use that in the project urls.py::
 
     url(r'^api/', include('<archive>.urls')),
 
-In this example, the URL path for this archive will be `api/data/`.
-Note the prefix can be omitted, in which case the URL path will be `api/` (might make sense if there is a single archive).
+In this example, the URL path for this archive will be ``api/data/``.
+Note the prefix can be omitted, in which case the URL path will be ``api/`` (might make sense if there is a single archive).
 In that case, the following shortand can be used in the project urls.py (no need for a separate <archive>/urls.py)::
 
     url(r'^api/', include(MuninnRouter('<archive>').urls)),
@@ -273,7 +273,7 @@ By default, all namespace fields are available. To disable some fields across al
 
 Sorting
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-To enable sorting, add `rest_framework.filters.OrderingFilter` to `DEFAULT_FILTER_BACKENDS` setting::
+To enable sorting, add ``rest_framework.filters.OrderingFilter`` to ``DEFAULT_FILTER_BACKENDS`` setting::
 
     REST_FRAMEWORK = {
     ...
@@ -281,7 +281,7 @@ To enable sorting, add `rest_framework.filters.OrderingFilter` to `DEFAULT_FILTE
         'DEFAULT_FILTER_BACKENDS': (
             'muninn_django.filters.RelatedOrderingFilter',
 
-`RelatedOrderingFilter` extends the built-in filter to support ordering by fields in related models, using the Django ORM __ notation. If you don't care about that, you stick to the built-in filter::
+``RelatedOrderingFilter`` extends the built-in filter to support ordering by fields in related models, using the Django ORM __ notation. If you don't care about that, you stick to the built-in filter::
 
     REST_FRAMEWORK = {
     ...
@@ -397,7 +397,7 @@ If the default behaviour doesn't suit you, you'll have to
 Database Migrations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 You can use django migrations to handle changes in the muninn namespaces. Note that:
-    - the initial tables must be created by `muninn-prepare`
+    - the initial tables must be created by ``muninn-prepare``
     - muninn-django will ignore Geometry data types, to add such a field you'll have to issue the SQL command manually
 
 1. Initialize the migrations::
