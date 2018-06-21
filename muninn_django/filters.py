@@ -44,10 +44,10 @@ class ProductFilter(filters.FilterSet):
 
     # `in` implicitly supports `exact` :)
     # `distinct=True` is required to remove duplicates that the underlying inner join produces
-    tag = CharInFilter(name='tags__tag', lookup_expr='in', distinct=True)
+    tag = CharInFilter(field_name='tags__tag', lookup_expr='in', distinct=True)
 
-    source_product = filters.CharFilter(name='source_products__uuid', lookup_expr='exact')
-    derived_product = filters.CharFilter(name='derived_products__uuid', lookup_expr='exact')
+    source_product = filters.CharFilter(field_name='source_products__uuid', lookup_expr='exact')
+    derived_product = filters.CharFilter(field_name='derived_products__uuid', lookup_expr='exact')
 
     class Meta(object):
         model = None  # to be overriden
