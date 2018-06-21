@@ -8,7 +8,7 @@ import logging
 from copy import copy
 
 from rest_framework import viewsets
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.generics import get_object_or_404
 
@@ -106,7 +106,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         result = serializer.validated_data[item]
         return result
 
-    @detail_route(methods=['post'])
+    @action(methods=['post'], detail=True)
     def tag(self, request, pk=None):
         '''Add tags'''
         instance = self.get_object()
@@ -118,7 +118,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
 
-    @detail_route(methods=['post'])
+    @action(methods=['post'], detail=True)
     def untag(self, request, pk=None):
         '''Remove tags'''
         instance = self.get_object()
@@ -129,7 +129,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
 
-    @detail_route(methods=['post'])
+    @action(methods=['post'], detail=True)
     def link(self, request, pk=None):
         '''Add source products'''
         instance = self.get_object()
@@ -141,7 +141,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(instance)
         return Response(serializer.data)
 
-    @detail_route(methods=['post'])
+    @action(methods=['post'], detail=True)
     def unlink(self, request, pk=None):
         '''Remove source products'''
         instance = self.get_object()
