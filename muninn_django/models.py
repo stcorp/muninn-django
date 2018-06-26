@@ -9,7 +9,6 @@ import os
 
 from django.contrib.gis.db import models
 from muninn_django.naiveutcdatetime.modelfields import NaiveDateTimeField
-# import django.contrib.gis.db.backends
 
 
 class Core(models.Model):
@@ -56,7 +55,6 @@ class Core(models.Model):
 
 
 class Tag(models.Model):
-    # id = models.IntegerField(primary_key=True)
     product = models.ForeignKey('Core', models.CASCADE, db_column='uuid', related_name='tags')
     tag = models.TextField()
 
@@ -77,7 +75,6 @@ class Tag(models.Model):
 
 
 class Link(models.Model):
-    # id = models.IntegerField(primary_key=True)
     product = models.ForeignKey('Core', models.CASCADE, db_column='uuid', related_name='source_links')
     source = models.ForeignKey('Core', models.CASCADE, db_column='source_uuid', related_name='+')
 

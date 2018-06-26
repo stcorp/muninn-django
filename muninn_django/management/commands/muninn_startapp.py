@@ -5,12 +5,9 @@
 from __future__ import absolute_import, division, print_function
 
 from django.core.management.base import BaseCommand, CommandError
-# from django.template import Engine
 from django.template import Template, Context
 import muninn
 
-# import sys
-# sys.path.insert(0, '/Users/rino/dev/s1qc/python/')
 
 TYPES_MAPPING = {
     'long': 'models.BigIntegerField',
