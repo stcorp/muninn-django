@@ -13,7 +13,7 @@ import muninn
 # sys.path.insert(0, '/Users/rino/dev/s1qc/python/')
 
 TYPES_MAPPING = {
-    'long': 'models.IntegerField',
+    'long': 'models.BigIntegerField',
     'integer': 'models.IntegerField',
     'real': 'models.FloatField',
     'boolean': 'models.BooleanField',

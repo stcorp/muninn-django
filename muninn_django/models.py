@@ -16,7 +16,7 @@ class Core(models.Model):
     uuid = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     active = models.BooleanField()
     hash = models.TextField(blank=True, null=True)
-    size = models.IntegerField(blank=True, null=True)
+    size = models.BigIntegerField(blank=True, null=True)
     metadata_date = NaiveDateTimeField()
     archive_date = NaiveDateTimeField(blank=True, null=True)
     archive_path = models.TextField(blank=True, null=True)
