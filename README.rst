@@ -147,6 +147,7 @@ Filtering needs to be enabled, see optional configuration section below.
 
     http GET "http://127.0.0.1:8000/muninn/<archive>/?metadata_date__gt=2018-02-12T16:41:07"
 
+Besides the standard `django field lookups <https://docs.djangoproject.com/en/1.11/ref/models/querysets/#field-lookups>`_, a custom lookup ``ne`` (for inequality) is available.
 
 Create a product
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
