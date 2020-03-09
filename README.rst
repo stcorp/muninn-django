@@ -32,30 +32,9 @@ Installation
         'muninn_django',
     ]
 
-2. Include the muninn-django URLconf in your project urls.py::
+2. Make sure that MUNINN_CONFIG_PATH is set so Muninn can find the used archive. In other words, for an archive called 'my_arch', that it points to a directory containing an archive configuration file called 'my_arch.cfg'.
 
-    url(r'^muninn/', include('muninn_django.urls')),
-
-3. Create a django app that will contain the archive models::
-
-    python manage.py startapp <archive>
-
-4. Generate the archive models::
-
-    python manage.py muninn_startapp <archive> > <archive>/models.py
-
-4.1. Or, if the models should not be managed::
-
-    python manage.py muninn_startapp --meta-options='{"managed": false}' <archive> > <archive>/models.py
-
-5. Add the archive app to your INSTALLED_APPS setting::
-
-    INSTALLED_APPS = [
-        ...
-        '<archive>',
-    ]
-
-6. Configure muninn-django. At a minimum, specify the models for each namespace in the archive, including ``core``::
+3. Configure muninn-django. For the mentioned example, use 'my_arch' for <archive>. At a minimum, specify the models for each namespace in the archive, including ``core``::
 
     MUNINN = {
         '<archive>': {
@@ -66,7 +45,18 @@ Installation
         },
     }
 
-7. You should restrict write access to the archive, and paginate the results. Below is a simple configuration. See DRF docs for details::
+4. Configure a a database connection to the archive database backend (TODO: what about multiple archives?).::
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.contrib.gis.db.backends.postgis',
+            'NAME': '<database>',
+            'USER': '<user>',
+            'PASSWORD': '<password>',
+        }
+    }
+
+5. You should restrict write access to the archive, and paginate the results. Below is a simple configuration. See DRF docs for details::
 
     REST_FRAMEWORK = {
         # Permissions
@@ -80,6 +70,31 @@ Installation
         'MAX_PAGE_SIZE': 1000, # specific muninn_django.pagination.PageNumberPagination
 
     }
+
+
+6. Create a django app that will contain the archive models::
+
+    python3 manage.py startapp <archive>
+
+7. Generate the archive models::
+
+    python3 manage.py muninn_startapp <archive> > <archive>/models.py
+
+7.1. Or, if the models should not be managed::
+
+    python3 manage.py muninn_startapp --meta-options='{"managed": false}' <archive> > <archive>/models.py
+
+8. Add the archive app to your INSTALLED_APPS setting::
+
+    INSTALLED_APPS = [
+        ...
+        '<archive>',
+    ]
+
+9. Include the muninn-django URLconf in your project urls.py::
+
+    url(r'^muninn/', include('muninn_django.urls')),
+
 
 
 ----------------------
@@ -405,15 +420,15 @@ You can use django migrations to handle changes in the muninn namespaces. Note t
 
 1. Initialize the migrations::
 
-    python manage.py makemigrations <archive>
-    python manage.py migrate --fake-initial <archive>
+    python3 manage.py makemigrations <archive>
+    python3 manage.py migrate --fake-initial <archive>
 
 2. Update models.py to match the desired state of the database (if the muninn definition has already been updated, you should be able to use ``muninn_startapp``)
 
 3. Apply migrations as usual in django::
 
-    python manage.py makemigrations <archive>
-    python manage.py migrate <archive>
+    python3 manage.py makemigrations <archive>
+    python3 manage.py migrate <archive>
 
 
 --------------
@@ -442,12 +457,6 @@ Writable data
 
 ``metadata_date`` is defined as read-only; its value is set whenever there is a write access.
 All other fields are writable.
-
-Geometry
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Geometry data types are not fully supported. The API supports reading and writing, but not query filtering. This notably affects ``core.footprint``.
-
 
 ---------------
 Troubleshooting
