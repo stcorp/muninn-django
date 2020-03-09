@@ -49,10 +49,11 @@ class {{ns.name_camel_case}}(models.Model):
     _core = models.OneToOneField(Core, models.CASCADE, db_column='uuid', related_name='{{ns.name}}', primary_key=True)
 {% for field in ns.fields %}
 {% if field.code == 'geometry' %}
-    {{field.name}} = {{field.type}}(geography=True{% if field.optional %}, blank=True, null=True{% endif %}){% endfor %}
+    {{field.name}} = {{field.type}}(geography=True{% if field.optional %}, blank=True, null=True{% endif %})
 {% else %}
-    {{field.name}} = {{field.type}}({% if field.optional %}blank=True, null=True{% endif %}){% endfor %}
+    {{field.name}} = {{field.type}}({% if field.optional %}blank=True, null=True{% endif %})
 {% endif %}
+{% endfor %}
 
     class Meta:
         db_table = '{{table_prefix}}{{ns.name}}'
