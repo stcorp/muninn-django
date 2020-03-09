@@ -75,7 +75,11 @@ class Command(BaseCommand):
         # get table_prefix
         archive_name = options['archive']
         config = muninn._read_archive_config_file(muninn._locate_archive_config_file(archive_name))
-        backend = config['archive']['backend']
+        try:
+            backend = config['archive']['database']
+        except KeyError:
+            backend = config['archive']['backend']
+
         table_prefix = config[backend].get('table_prefix', '')
         if options['meta_options']:
             meta_options = '\n'.join(['        %s = %s' % (k, repr(v)) for k, v in options['meta_options'].items()]) + '\n'
