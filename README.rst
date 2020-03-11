@@ -95,6 +95,8 @@ Installation
 
     url(r'^muninn/', include('muninn_django.urls')),
 
+10. Check the 'Optional configuration' setting to enable filtering and sorting.
+
 
 
 ----------------------
@@ -296,16 +298,18 @@ To enable sorting, add ``rest_framework.filters.OrderingFilter`` to ``DEFAULT_FI
     REST_FRAMEWORK = {
     ...
         # Filtering
-        'DEFAULT_FILTER_BACKENDS': (
+        'DEFAULT_FILTER_BACKENDS': [
             'muninn_django.filters.RelatedOrderingFilter',
+        ]
 
 ``RelatedOrderingFilter`` extends the built-in filter to support ordering by fields in related models, using the Django ORM __ notation. If you don't care about that, you stick to the built-in filter::
 
     REST_FRAMEWORK = {
     ...
         # Filtering
-        'DEFAULT_FILTER_BACKENDS': (
+        'DEFAULT_FILTER_BACKENDS': [
             'rest_framework.filters.OrderingFilter', 
+        ],
 
 
 Filtering
@@ -317,10 +321,11 @@ To enable filtering:
     REST_FRAMEWORK = {
     ...
         # Filtering
-        'DEFAULT_FILTER_BACKENDS': (
+        'DEFAULT_FILTER_BACKENDS': [
             'django_filters.rest_framework.DjangoFilterBackend', 
+        ],
 
-2. Add it to the INSTALLED_APPS setting. It is necessary for the browsable API::
+2. Add it to the INSTALLED_APPS setting. This is necessary for the browsable API::
 
     INSTALLED_APPS = [
         ...
