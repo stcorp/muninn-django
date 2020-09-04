@@ -45,7 +45,7 @@ Installation
         },
     }
 
-4. Configure a a database connection to the archive database backend (TODO: what about multiple archives?).::
+4. Configure a database connection to the archive database backend. You can also connect to different Muninn archives in different databases by creating and configuring `Django Database Routers <https://docs.djangoproject.com/en/dev/topics/db/multi-db/>`_::
 
     DATABASES = {
         'default': {
