@@ -51,4 +51,4 @@ class MuninnRouter(DefaultRouter):
             model_class = import_string(config['models']['core'])
             queryset = model_class.objects.all()
             view_class = views.ProductViewSetFactory.get(archive, queryset, )
-        self.register(prefix, view_class, base_name=archive)
+        self.register(prefix, view_class, archive)
