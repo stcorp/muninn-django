@@ -9,15 +9,14 @@ A Django app to add a REST API on top of your Muninn archive(s)
 Requirements
 ------------
 
-- muninn 4.1 (including a configured archive)
-- django 1.11.7
-- djangorestframework (aka DRF) 3.8.2
-- djangorestframework-gis 0.13
-- django-filter 1.1.0 (optional)
-- coreapi 2.3.3 (optional)
+- muninn (including a configured archive)
+- django
+- djangorestframework (aka DRF)
+- djangorestframework-gis
+- django-filter (optional)
+- coreapi (optional)
 
-This package has been tested with the above mentioned versions.
-When using different versions, make sure to check the `djangorestframework-gis compatibility table <https://github.com/djangonauts/django-rest-framework-gis#compatibility-with-drf-django-and-python>`_.
+Make sure to check the `djangorestframework-gis compatibility table <https://github.com/djangonauts/django-rest-framework-gis#compatibility-with-drf-django-and-python>`_ to verify that you are using compatible versions of these packages.
 
 ------------
 Installation
