@@ -64,13 +64,6 @@ class ProductFilter(filters.FilterSet):
 def _get_filters(model_class, preffix=None, disabled_lookups=None):
     result = {}
     for field in model_class._meta.fields:
-#        if isinstance(field, GeometryField):
-#            # disable lookups on geography fields, because
-#            # 1. django sqlite backend will match null fields with everything (fixed in django 2.0)
-#            #   see https://code.djangoproject.com/ticket/28380
-#            # 2. django postgres backend does not support basic functions when geography=True, e.g. ST_Contains
-#            #   see https://docs.djangoproject.com/en/1.11/ref/contrib/gis/model-api/#geography-type
-#            continue
         filter_def = list(type(field).get_lookups().keys())
         if filter_def and field.name != '_core':
             name = '%s__%s' % (preffix, field.name) if preffix else field.name
