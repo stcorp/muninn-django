@@ -10,8 +10,9 @@ else:
     # python_requires is only availabe since setuptools 24.2.0 and pip 9.0.0
     sys.exit("Python 2.6 (or newer) or 3.6 (or newer) is required to use this package.")
 
+# muninn would also be required for running the muninn-startapp command,
+# but is not included here as a mandatory dependency.
 requirements = [
-    "muninn",
     "django",
     "djangorestframework",
     "djangorestframework-gis",
