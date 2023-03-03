@@ -31,7 +31,7 @@ class ProductViewSetFactory(object):
         body['muninn_archive'] = archive
         body['queryset'] = queryset
         if ProductFilterFactory:
-            body['filter_class'] = ProductFilterFactory.get(archive, queryset.model)
+            body['filterset_class'] = ProductFilterFactory.get(archive, queryset.model)
 
         newclass = type('ProductViewSet', (ProductViewSet, ), body)
         return newclass
@@ -43,7 +43,7 @@ class ProductViewSet(viewsets.ModelViewSet):
         - mode: for GET requests, use serializer defined in settings
     '''
     muninn_archive = None
-    filter_class = None
+    filterset_class = None
 
     def get_queryset(self):
         queryset = self.queryset
@@ -57,8 +57,8 @@ class ProductViewSet(viewsets.ModelViewSet):
                 if name.endswith('_query_param'):
                     valid_params.append(getattr(self.paginator, name))
         # filters
-        if self.filter_class:
-            valid_params += list(self.filter_class.get_filters().keys())
+        if self.filterset_class:
+            valid_params += list(self.filterset_class.get_filters().keys())
         for name in self.request.GET.keys():
             if name not in valid_params:
                 raise BadRequest('Invalid query param: "%s"' % name)
