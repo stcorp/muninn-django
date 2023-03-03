@@ -14,7 +14,6 @@ else:
 # but is not included here as a mandatory dependency.
 requirements = [
     "django",
-    "django-filter>=2.0",
     "djangorestframework",
     "djangorestframework-gis",
 ]
