@@ -1,7 +1,12 @@
+1.2.1 2024-01-05
+~~~~~~~~~~~~~~~~
+
+* Fixed Django 4 compatibility issue.
+
 1.2 2023-05-15
 ~~~~~~~~~~~~~~
 
-* Fix compatibility issue with django-filter 2.x.
+* Fixed compatibility issue with django-filter 2.x.
   muninn-django now requires django-filter 2.0 or later.
 
 1.1 2022-07-14
