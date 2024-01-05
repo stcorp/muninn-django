@@ -94,7 +94,7 @@ Installation
 
 9. Include the muninn-django URLconf in your project urls.py::
 
-    url(r'^muninn/', include('muninn_django.urls')),
+    re_path(r'^muninn/', include('muninn_django.urls')),
 
 10. Check the 'Optional configuration' setting to enable filtering and sorting.
 
@@ -231,30 +231,30 @@ Custom URLs
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 The default configuration::
 
-    url(r'^muninn/', include('muninn_django.urls')),
+    re_path(r'^muninn/', include('muninn_django.urls')),
 
 adds all archives under a common URL path ``muninn``, so the URLs for each archive will be ``muninn/archive1/``, ``muninn/archive2/``, etc.
 
 To customize, this behaviour, create a ``<archive>/urls.py``::
 
-    from django.conf.urls import url, include
+    from django.urls import re_path, include
     from muninn_django.routers import MuninnRouter
 
     router = MuninnRouter()
     router.register_muninn('<archive>', prefix='data')
     urlpatterns = [
-        url(r'^', include(router.urls))
+        re_path(r'^', include(router.urls))
     ]
 
 and use that in the project urls.py::
 
-    url(r'^api/', include('<archive>.urls')),
+    re_path(r'^api/', include('<archive>.urls')),
 
 In this example, the URL path for this archive will be ``api/data/``.
 Note the prefix can be omitted, in which case the URL path will be ``api/`` (might make sense if there is a single archive).
 In that case, the following shortand can be used in the project urls.py (no need for a separate <archive>/urls.py)::
 
-    url(r'^api/', include(MuninnRouter('<archive>').urls)),
+    re_path(r'^api/', include(MuninnRouter('<archive>').urls)),
 
 
 Custom serializers
