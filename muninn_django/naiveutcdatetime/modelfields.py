@@ -17,11 +17,11 @@ class NaiveDateTimeField(models.DateTimeField):
     # Inheriting from DateTimeField makes django rest framework into using the correct data types
     default_error_messages = {
         'invalid': _("'%(value)s' value has an invalid format. It must be in "
-                     "YYYY-MM-DD HH:MM:ss[.uuuuuu] format."),
+                     "YYYY-MM-DDTHH:MM:ss[.uuuuuu] format."),
         'invalid_date': _("'%(value)s' value has the correct format "
                           "(YYYY-MM-DD) but it is an invalid date."),
         'invalid_datetime': _("'%(value)s' value has the correct format "
-                              "(YYYY-MM-DD HH:MM:ss[.uuuuuu]) "
+                              "(YYYY-MM-DDTHH:MM:ss[.uuuuuu]) "
                               "but it is an invalid date/time."),
     }
     description = _("Date (with time, without timezone)")
@@ -64,3 +64,7 @@ class NaiveDateTimeField(models.DateTimeField):
         # Calling super().get_prep_value would raise warnings about using naive datetimes if USE_TZ=True
         value = models.Field.get_prep_value(self, value)
         return self.to_python(value)
+
+    def value_to_string(self, obj):
+        val = self.value_from_object(obj)
+        return "" if val is None else val.strftime("%Y-%m-%dT%H:%M:%S.%f")
