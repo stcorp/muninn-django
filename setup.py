@@ -21,7 +21,7 @@ requirements = [
 
 setup(
     name="muninn_django",
-    version="1.2.1",
+    version="1.2.2",
     description="Django and REST interface for the muninn product archive",
     url="http://stcorp.nl/",
     author="S[&]T",
