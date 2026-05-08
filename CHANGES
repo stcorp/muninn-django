@@ -1,3 +1,9 @@
+1.3 2026-05-08
+~~~~~~~~~~~~~~
+
+* Add geometry submodule including wrap_geometry() to split lines/polygons
+  at the dateline and unfold polygons covering the North/South pole(s).
+
 1.2.2 2025-07-16
 ~~~~~~~~~~~~~~~~
 
