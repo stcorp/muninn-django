@@ -137,7 +137,7 @@ def wrap_geometry(geometry):
 
     if type(geometry) is LineString:
         # Lines need to be divided into sub-lines if they cross the dateline
-        coords = geometry[0].coords
+        coords = geometry.coords
         lon, lat = coords[0]
         # map lon to [-180, 180]
         lon = lon + 360 if lon < -180 else (lon - 360 if lon > 180 else lon)
